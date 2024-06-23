@@ -4,11 +4,12 @@ import '../Login/Login.css';
 
 const Pets = () => {
     const [pets, setPets] = useState([]);
+    const serverUrl = 'http://54.163.210.212:3000';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/pets');
+                const response = await axios.get(`${serverUrl}/pets`);
                 setPets(response.data);
             } catch (error) {
                 console.error("Error fetching pets data:", error);
@@ -34,7 +35,7 @@ const Pets = () => {
                 <tbody>
                 {pets.map(pet => (
                     <tr key={pet._id}>
-                        <td>{pet.Id}</td>
+                        <td>{pet._id}</td>
                         <td>{pet.Name}</td>
                         <td>{pet.ResponseTime}</td>
                         <td>{pet.Type}</td>

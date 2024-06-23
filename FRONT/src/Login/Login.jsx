@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import axios from 'axios'; // Import axios to make HTTP requests
-
 function Login() {
 
     const [isExistingUser, setIsExistingUser] = useState(true);
     const [username, setUsername] = useState(''); // Add this line
     const [password, setPassword] = useState(''); // Add this line
+
+    const serverUrl = "http://54.163.210.212:3001"
 
     const navigate = useNavigate(); // Get the navigate function
 
@@ -24,7 +25,7 @@ function Login() {
         event.preventDefault();
         // Make a POST request to your backend API
         try {
-            const response = await axios.post('/api/login', { username, password });
+            const response = await axios.post(`${serverUrl}/login`, { username, password });
             console.log(response.data);
             navigate('/data'); // Navigate to Data page after successful login
         } catch (error) {

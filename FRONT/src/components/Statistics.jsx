@@ -4,11 +4,12 @@ import '../Login/Login.css';
 
 const Statistics = () => {
     const [statistics, setStatistics] = useState([]);
+    const serverUrl = 'http://54.163.210.212:3000';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/statistics');
+                const response = await axios.get(`${serverUrl}/login`);
                 console.log(response.data);
                 setStatistics(response.data);
             } catch (error) {
