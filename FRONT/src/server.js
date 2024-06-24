@@ -9,7 +9,7 @@ const iv = crypto.randomBytes(16);
 const app = express();
 const port = 3001;
 
-const mqttUri = `mqtt://54.163.210.212`;
+const mqttUri = `mqtt://172.31.31.191`;
 const mqttClient = mqtt.connect(mqttUri);
 
 mqttClient.on("connect", () => {
@@ -51,7 +51,9 @@ function encrypt(text) {
 
 function waitForResponse(topic) {
     return new Promise((resolve) => {
+        console.log("waiting for response");
         mqttClient.on("message", (receivedTopic, message) => {
+            console.log("Received a message on the topic: ", receivedTopic);
             if (receivedTopic === topic) {
                 const data = JSON.parse(message.toString());
                 resolve(data);
@@ -61,22 +63,33 @@ function waitForResponse(topic) {
 }
 
 app.get("/pets", async (req, res) => {
+    console.log("GET /pets request received");
     mqttClient.publish("request", JSON.stringify({ type: "pets" }));
+    console.log("Published request to MQTT topic 'request' for 'pets'");
     const data = await waitForResponse("petsResponse");
+    console.log("Received response from MQTT topic 'petsResponse':", data);
     res.json(data);
 });
 
 app.get("/statistics", async (req, res) => {
+    console.log("GET /statistics request received");
     mqttClient.publish("request", JSON.stringify({ type: "statistics" }));
+    console.log("Published request to MQTT topic 'request' for 'statistics'");
     const data = await waitForResponse("statsResponse");
+    console.log("Received response from MQTT topic 'statsResponse':", data);
     res.json(data);
 });
 
 app.post("/login", async (req, res) => {
+    console.log("POST /login request received");
     const { username, password } = req.body;
+    console.log(`Received username: ${username} and password: ${password}`);
     const encrypted = encrypt(username + ':' + password);
+    console.log("Encrypted credentials: ", encrypted);
     mqttClient.publish("login", JSON.stringify(encrypted));
+    console.log("Published encrypted credentials to MQTT topic 'login'");
     const data = await waitForResponse("loginResponse");
+    console.log("Received response from MQTT topic 'loginResponse':", data);
     if (data.success) {
         res.json({ success: true });
     } else {
@@ -85,5 +98,5 @@ app.post("/login", async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running on ${port}/`);
+    console.log(`Server running on ${port}`);
 });

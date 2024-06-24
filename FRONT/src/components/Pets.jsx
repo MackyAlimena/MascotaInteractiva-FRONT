@@ -4,7 +4,7 @@ import '../Login/Login.css';
 
 const Pets = () => {
     const [pets, setPets] = useState([]);
-    const serverUrl = 'http://54.163.210.212:3001';
+    const serverUrl = 'http://34.228.18.22:3001';
 
     useEffect(() => {
         const fetchData = async () => {
