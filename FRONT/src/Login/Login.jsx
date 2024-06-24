@@ -17,16 +17,21 @@ function Login() {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        // Make a POST request to your backend API
-        try {
-            const response = await axios.post(`${serverUrl}/login`, { username, password });
-            console.log(response.data);
+    event.preventDefault();
+    // Make a POST request to your backend API
+    try {
+        const response = await axios.post(`${serverUrl}/login`, { username, password });
+        console.log(response.data);
+        if (response.data.success) {
             navigate('/data'); // Navigate to Data page after successful login
-        } catch (error) {
-            console.error(error);
+        } else {
+            alert('Login failed'); // Show an error message
         }
-    };
+    } catch (error) {
+        console.error(error);
+        alert('An error occurred'); // Show an error message
+    }
+};
 
     return (
         <div className="container">
