@@ -38,8 +38,9 @@ function Login() {
             <div className="frame">
                 <div className="nav">
                     <ul className="links">
-                        <li className={isExistingUser ? "signin-active" : "signup-inactive"} onClick={handleExistingUserClick}>
-                            <a>Sign in</a>
+                        <li className={isExistingUser ? "signin-active" : "signup-inactive"}
+                            onClick={handleExistingUserClick}>
+                            <button>Sign in</button>
                         </li>
                     </ul>
                 </div>
