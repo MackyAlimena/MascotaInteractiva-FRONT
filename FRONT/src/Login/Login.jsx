@@ -5,8 +5,8 @@ import axios from 'axios'; // Import axios to make HTTP requests
 function Login() {
 
     const [isExistingUser, setIsExistingUser] = useState(true);
-    const [username, setUsername] = useState(''); // Add this line
-    const [password, setPassword] = useState(''); // Add this line
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const serverUrl = "http://54.163.210.212:3001"
 
@@ -14,11 +14,6 @@ function Login() {
 
     const handleExistingUserClick = () => {
         setIsExistingUser(true);
-    };
-
-    const handleNewUserClick = () => {
-        console.log('Sign up link clicked');
-        setIsExistingUser(false);
     };
 
     const handleSubmit = async (event) => {
@@ -52,9 +47,7 @@ function Login() {
                     <input className="form-styling" type="text" name="password" placeholder="" value={password}
                            onChange={e => setPassword(e.target.value)}/>
                     <button type="button" className="btn-signin" onClick={handleSubmit}>Login to your account</button>
-                    <button type="button" className="btn-animate">
-                        <Link to="/create-account">Create account</Link>
-                    </button>
+
                     <button type="button" className="btn-animate">
                         <Link to="/data">Test</Link>
                     </button>
