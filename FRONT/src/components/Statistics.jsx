@@ -9,7 +9,7 @@ const Statistics = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${serverUrl}/login`);
+                const response = await axios.get(`${serverUrl}/statistics`);
                 console.log(response.data);
                 setStatistics(response.data);
             } catch (error) {
