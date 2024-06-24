@@ -8,7 +8,7 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const serverUrl = "http://34.228.18.22:3001"
+    const serverUrl = "http://34.201.99.170:3001"
 
     const navigate = useNavigate(); // Get the navigate function
 
