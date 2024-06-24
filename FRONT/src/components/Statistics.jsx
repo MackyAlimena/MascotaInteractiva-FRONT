@@ -4,7 +4,7 @@ import '../Login/Login.css';
 
 const Statistics = () => {
     const [statistics, setStatistics] = useState([]);
-    const serverUrl = 'http://54.163.210.212:3000';
+    const serverUrl = 'http://54.163.210.212:3001';
 
     useEffect(() => {
         const fetchData = async () => {

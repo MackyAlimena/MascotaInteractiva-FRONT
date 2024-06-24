@@ -7,7 +7,7 @@ const secretKey = 'vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3';
 const iv = crypto.randomBytes(16);
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const mqttUri = `mqtt://54.163.210.212`;
 const mqttClient = mqtt.connect(mqttUri);
